@@ -30,15 +30,12 @@ void rabin_karp_match(char *txt, char *pat, unsigned int base,
 	 	hash_pat = (pat[p_idx] + base * hash_pat) % prime;
 	 }
 	 
-	 printf("Hash txt: %d, Hash Pat: %d, H: %d\n", hash_txt, hash_pat, h);
-	 
 	 for (t_idx = 0; t_idx <= (t_len - p_len); t_idx++) {
 	 	/* Check if the p_len character hash of txt string matches the hash of 
 	 	 * pattern string. If there is a hash match, perform linear char by char 
 	 	 * comparison to determine substring match.
 	 	 */
 	 	 if(hash_txt == hash_pat) {
-	 	 	printf("Hash match @ %d!!\n", t_idx);
 	 	 	for(p_idx = 0; p_idx < p_len; p_idx++) {
 	 	 		if(txt[t_idx + p_idx] != pat[p_idx]) {
 	 	 			break;
@@ -55,7 +52,6 @@ void rabin_karp_match(char *txt, char *pat, unsigned int base,
 		if(t_idx <(t_len - p_len)) {
 			hash_txt = (hash_txt + prime - ((h*txt[t_idx])%prime)) % prime;
 			hash_txt = (base * hash_txt + txt[t_idx + p_len]) % prime;
-		 	printf("Next Hash txt: %d, Pos: %d\n", hash_txt, t_idx+1);
 		}
 	 }
 	 
